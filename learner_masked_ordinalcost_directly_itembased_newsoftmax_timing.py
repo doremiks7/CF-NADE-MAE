@@ -772,18 +772,20 @@ if __name__ == '__main__':
 #             pred_r = pred_ratings[0].argmax(axis=2) + 1
             mask = out_r.sum(axis=2)
             se = np.sum(np.square(true_r - pred_r) * mask)
-
-            tong = np.sum(abs(true_r - pred_r))
+            ae = np.sum(abs(true_r - pred_r))
 
             n = np.sum(mask)
+
+            absolute_error_valid.append(ae)
             squared_error_valid.append(se)
             n_sample_valid.append(n)
 
+        absolute_error_ = np.array(absolute_error_valid).sum()
         squared_error_ = np.array(squared_error_valid).sum()
         n_samples = np.array(n_sample_valid).sum()
 
 
-        valid_MAE = tong/n
+        valid_MAE = (absolute_error_/ (n_samples * 1.0 + 1e-8))
 
         valid_RMSE = np.sqrt(squared_error_ / (n_samples * 1.0 + 1e-8))
         print ('Validation:', " RMSE: {0:.6f}".format(valid_RMSE) , "Valid Time: {0:.6f}".format(valid_time), get_done_text(start_time),)
@@ -837,15 +839,21 @@ if __name__ == '__main__':
 #         pred_r = pred_ratings[0].argmax(axis=2) + 1
         mask = out_r.sum(axis=2)
         se = np.sum(np.square(true_r - pred_r) * mask)
-        tong = np.sum(abs(true_r - pred_r))
+        ae = np.sum(abs(true_r - pred_r))
+
+
         n = np.sum(mask)
         squared_error_test.append(se)
+        absolute_error_test.append(ae)
+
         n_sample_test.append(n)
+
+    absolute_error_ = np.array(absolute_error_test).sum()
 
     squared_error_ = np.array(squared_error_test).sum()
     n_samples = np.array(n_sample_test).sum()
     test_RMSE = np.sqrt(squared_error_ / (n_samples * 1.0 + 1e-8))
-    test_MAE = tong/n
+    test_MAE = (absolute_error_ / (n_samples * 1.0 + 1e-8))
     print ('Test:', " RMSE: {0:.6f}".format(test_RMSE) , "Test Time: {0:.6f}".format(test_time), get_done_text(start_time),)
     print ('Test:', " MAE: {0:.6f}".format(test_MAE))
     f = open(os.path.join(output_path, 'Reco_NADE_masked_directly_itembased.txt'), 'a')
@@ -889,8 +897,7 @@ if __name__ == '__main__':
         n = np.sum(mask)
         squared_error_test.append(se)
         n_sample_test.append(n)
-        # MAE_ERROR = np.sum(abs(true_r - pred_r))
-
+        
 
     squared_error_ = np.array(squared_error_test).sum()
     n_samples = np.array(n_sample_test).sum()
