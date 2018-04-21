@@ -782,14 +782,12 @@ if __name__ == '__main__':
         squared_error_ = np.array(squared_error_valid).sum()
         n_samples = np.array(n_sample_valid).sum()
 
-        valid_MAE = np.sqrt(squared_error_)/ (n_samples * 1.0 + 1e-8)
 
-        valid_MAE2 = tong/n
+        valid_MAE = tong/n
 
         valid_RMSE = np.sqrt(squared_error_ / (n_samples * 1.0 + 1e-8))
         print ('Validation:', " RMSE: {0:.6f}".format(valid_RMSE) , "Valid Time: {0:.6f}".format(valid_time), get_done_text(start_time),)
-        print ('Validation1:', " MAE: {0:.6f}".format(valid_MAE))
-        print ('Validation2:', " MAE: {0:.6f}".format(valid_MAE2))
+        print ('Validation:', " MAE: {0:.6f}".format(valid_MAE))
 
         if valid_RMSE < best_valid_error:
             best_epoch = epoch
@@ -839,6 +837,7 @@ if __name__ == '__main__':
 #         pred_r = pred_ratings[0].argmax(axis=2) + 1
         mask = out_r.sum(axis=2)
         se = np.sum(np.square(true_r - pred_r) * mask)
+        tong = np.sum(abs(true_r - pred_r))
         n = np.sum(mask)
         squared_error_test.append(se)
         n_sample_test.append(n)
@@ -846,7 +845,7 @@ if __name__ == '__main__':
     squared_error_ = np.array(squared_error_test).sum()
     n_samples = np.array(n_sample_test).sum()
     test_RMSE = np.sqrt(squared_error_ / (n_samples * 1.0 + 1e-8))
-    test_MAE = np.sqrt(squared_error_)/ (n_samples * 1.0 + 1e-8)
+    test_MAE = tong/n
     print ('Test:', " RMSE: {0:.6f}".format(test_RMSE) , "Test Time: {0:.6f}".format(test_time), get_done_text(start_time),)
     print ('Test:', " MAE: {0:.6f}".format(test_MAE))
     f = open(os.path.join(output_path, 'Reco_NADE_masked_directly_itembased.txt'), 'a')
