@@ -187,20 +187,20 @@ if __name__ == "__main__":
 #          "/Users/yin.zheng/ml_datasets/MovieLens1M-shuffle-itembased-0",
 #          1234)
     print('1')
-    main("/content/CF-NADE/ml-1m",
-         "/content/CF-NADE/ml_datasets/MovieLens1M-shuffle-itembased-1",
+    main("/content/CF-NADE-MAE/ml-1m",
+         "/content/CF-NADE-MAE/ml_datasets/MovieLens1M-shuffle-itembased-1",
          2341)
     print ('2')
-    main("/content/CF-NADE/ml-1m",
-         "/content/CF-NADE/ml_datasets/MovieLens1M-shuffle-itembased-2",
+    main("/content/CF-NADE-MAE/ml-1m",
+         "/content/CF-NADE-MAE/ml_datasets/MovieLens1M-shuffle-itembased-2",
          3412)
     print ('3')
-    main("/content/CF-NADE/ml-1m",
-         "/content/CF-NADE/ml_datasets/MovieLens1M-shuffle-itembased-3",
+    main("/content/CF-NADE-MAE/ml-1m",
+         "/content/CF-NADE-MAE/ml_datasets/MovieLens1M-shuffle-itembased-3",
          4123)
     print ('4')
-    main("/content/CF-NADE/ml-1m",
-         "/content/CF-NADE/ml_datasets/MovieLens1M-shuffle-itembased-4",
+    main("/content/CF-NADE-MAE/ml-1m",
+         "/content/CF-NADE-MAE/ml_datasets/MovieLens1M-shuffle-itembased-4",
          1324)
 #     from fuel.datasets import H5PYDataset
 #     
