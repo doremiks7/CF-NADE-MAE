@@ -835,8 +835,9 @@ if __name__ == '__main__':
     squared_error_ = np.array(squared_error_test).sum()
     n_samples = np.array(n_sample_test).sum()
     test_RMSE = np.sqrt(squared_error_ / (n_samples * 1.0 + 1e-8))
+    test_MAE = np.sqrt(squared_error_)/ (n_samples * 1.0 + 1e-8)
     print ('Test:', " RMSE: {0:.6f}".format(test_RMSE) , "Test Time: {0:.6f}".format(test_time), get_done_text(start_time),)
-
+    print ('Test:', " MAE: {0:.6f}".format(test_MAE))
     f = open(os.path.join(output_path, 'Reco_NADE_masked_directly_itembased.txt'), 'a')
     to_write = [str(test_RMSE), str(best_valid_error), str(best_epoch)] + sys.argv[:-1]
     line = " ".join(to_write) + '\n'
@@ -884,9 +885,9 @@ if __name__ == '__main__':
     squared_error_ = np.array(squared_error_test).sum()
     n_samples = np.array(n_sample_test).sum()
     test_RMSE = np.sqrt(squared_error_ / (n_samples * 1.0 + 1e-8))
-    test_MAE = np.sqrt(squared_error_)/ (n_samples * 1.0 + 1e-8)
+    
     print ('Test:', " RMSE: {0:.6f}".format(test_RMSE) , "Test Time: {0:.6f}".format(test_time), get_done_text(start_time))
-    print ('Test:', " MAE: {0:.6f}".format(test_MAE))
+
     f = open(os.path.join(output_path, 'Reco_NADE_masked_directly_itembased.txt'), 'a')
     to_write = [str(test_RMSE), str(best_valid_error), str(best_epoch)] + sys.argv[:-1] + ['polyak']
     line = " ".join(to_write) + '\n'
