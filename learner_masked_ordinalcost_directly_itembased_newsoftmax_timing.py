@@ -755,6 +755,7 @@ if __name__ == '__main__':
         print ('\tValidating ...',)
         start_time = t.time()
         squared_error_valid = []
+        absolute_error_valid - []
         n_sample_valid = []
         valid_time = 0
         for batch in valid_monitor_stream.get_epoch_iterator():
@@ -824,6 +825,7 @@ if __name__ == '__main__':
     print ('\tTesting ...',)
     start_time = t.time()
     squared_error_test = []
+    absolute_error_test = []
     n_sample_test = []
     test_time = 0
     for batch in test_monitor_stream.get_epoch_iterator():
