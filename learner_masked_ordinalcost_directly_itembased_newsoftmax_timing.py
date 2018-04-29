@@ -141,7 +141,7 @@ class Trainer_MovieLensTransformer(Transformer):
         for rat in ratings:
             
             time = rat.nonzero()[0]
-            if len(nonzero_id) == 0:
+            if len(time) == 0:
                 continue
 
             ordering = np.arange(len(time))
