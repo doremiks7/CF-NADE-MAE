@@ -773,7 +773,7 @@ if __name__ == '__main__':
 #             pred_r = pred_ratings[0].argmax(axis=2) + 1
             mask = out_r.sum(axis=2)
             se = np.sum(np.square(true_r - pred_r) * mask)
-            ae = np.sum(abs(true_r - pred_r))
+            ae = np.sum(abs(true_r - pred_r) * mask)
 
             n = np.sum(mask)
 
@@ -789,6 +789,8 @@ if __name__ == '__main__':
         valid_MAE = (absolute_error_/ (n_samples * 1.0 + 1e-8))
 
         valid_RMSE = np.sqrt(squared_error_ / (n_samples * 1.0 + 1e-8))
+
+
         print ('Validation:', " RMSE: {0:.6f}".format(valid_RMSE) , "Valid Time: {0:.6f}".format(valid_time), get_done_text(start_time),)
         print ('Validation:', " MAE: {0:.6f}".format(valid_MAE))
 
@@ -841,7 +843,7 @@ if __name__ == '__main__':
 #         pred_r = pred_ratings[0].argmax(axis=2) + 1
         mask = out_r.sum(axis=2)
         se = np.sum(np.square(true_r - pred_r) * mask)
-        ae = np.sum(abs(true_r - pred_r))
+        ae = np.sum(abs(true_r - pred_r) * mask)
 
 
         n = np.sum(mask)
