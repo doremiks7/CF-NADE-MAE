@@ -139,10 +139,13 @@ class Trainer_MovieLensTransformer(Transformer):
 
         cnt = 0
         for rat in ratings:
+            time = rat.nonzero()[3]
             nonzero_id = rat.nonzero()[0]
             if len(nonzero_id) == 0:
                 continue
-            ordering = np.random.permutation(np.arange(len(nonzero_id)))
+
+            ordering = np.arange(time)
+            # ordering = np.random.permutation(np.arange(len(nonzero_id)))
             d = np.random.randint(0, len(ordering))
             flag_in = (ordering < d)
             flag_out = (ordering >= d)
