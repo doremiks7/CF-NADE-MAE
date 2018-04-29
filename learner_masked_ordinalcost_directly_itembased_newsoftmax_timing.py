@@ -149,8 +149,8 @@ class Trainer_MovieLensTransformer(Transformer):
             d = np.random.randint(0, len(ordering))
             flag_in = (ordering < d)
             flag_out = (ordering >= d)
-            input_masks[cnt][nonzero_id] = flag_in
-            output_masks[cnt][nonzero_id] = flag_out
+            input_masks[cnt][time] = flag_in
+            output_masks[cnt][time] = flag_out
             input_ratings[cnt] = rat * input_masks[cnt]
             output_ratings[cnt] = rat * output_masks[cnt]
             cnt += 1
