@@ -145,7 +145,7 @@ class Trainer_MovieLensTransformer(Transformer):
                 continue
 
             # ordering = np.arange(len(time))
-            ordering = np.random.permutation(np.arange(len(nonzero_id)))
+            ordering = np.random.permutation(np.arange(len(time)))
             d = np.random.randint(0, len(ordering))
             flag_in = (ordering < d)
             flag_out = (ordering >= d)
