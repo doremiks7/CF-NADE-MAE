@@ -877,7 +877,7 @@ if __name__ == '__main__':
     cc = 0
     for pp in best_polyak:
         pp_value = pp.get_value()
-        np.save('/tmp/cfnade/%d'%cc, pp_value)
+        np.save('/CF-NADE-MAE/%d'%cc, pp_value)
         cc+=1
 
 
